@@ -14,10 +14,10 @@ server.listen(8083,'78.46.28.196');
 var socket = io.listen(server); 
 
 socket.on('connection', function(client){ 
- console.log('connected');
-  client.emit('message', {foo: 'bar'});
-  client.on('message', function(){
-      
+
+  client.on('message', function(data){
+      console.log(data);
+      client.send(data);
   }); 
   
   client.on('disconnect', function(){

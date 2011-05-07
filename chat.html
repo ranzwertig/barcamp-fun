@@ -1,15 +1,19 @@
 <!doctype html>
 <html>
     <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script src="http://d2.christianranz.com:8083/socket.io/socket.io.js"></script> 
         <script> 
-         var socket = new io.Socket('http://d2.christianranz.com:8083'); 
+         var socket = new io.Socket('d2.christianranz.com:8083'); 
          socket.connect();
+         
          socket.on('connect', function(){
-            alert('connected');
+            $('#send').click(function(){
+                socket.send($('#mymsg').val());
+            });
          }) 
-         socket.on('message', function(){
-            alert('message');
+         socket.on('message', function(data){
+            $('#messages').append('<li>'+data.msg+'</li>');
          }) 
          socket.on('disconnect', function(){
             alert('disconnect');
@@ -17,5 +21,9 @@
         </script> 
     </head>
     <body>
+        <ul id="#messages">
+        </ul><br>
+        <input type="text" id="mymsg"><br>
+        <span id="send">send this</span>
     </body>
 </html>
