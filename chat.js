@@ -9,7 +9,7 @@ var server = http.createServer(function(req, res){
     res.end(content); 
 });
 
-server.listen(process.env.C9_PORT,'0.0.0.0');
+server.listen(8083,'78.46.28.196');
   
 var socket = io.listen(server); 
 
