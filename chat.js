@@ -17,7 +17,7 @@ socket.on('connection', function(client){
 
   client.on('message', function(data){
       console.log(data);
-      client.send(data);
+      socket.broadcast(data);
   }); 
   
   client.on('disconnect', function(){
